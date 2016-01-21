@@ -1,6 +1,6 @@
 FROM ubuntu
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install build-essential git python python-software-properties -y
+RUN apt-get install build-essential git python software-properties-common -y
 RUN add-apt-repository ppa:mc3man/trusty-media -y
 RUN apt-get update
 RUN apt-get install ffmpeg gstreamer0.10-ffmpeg -y
