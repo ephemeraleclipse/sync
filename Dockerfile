@@ -1,6 +1,6 @@
 FROM ubuntu
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install build-essential git python -y
+RUN apt-get install build-essential git python python-software-properties -y
 RUN add-apt-repository ppa:mc3man/trusty-media -y
 RUN apt-get update
 RUN apt-get install ffmpeg gstreamer0.10-ffmpeg -y
@@ -8,6 +8,7 @@ RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
 COPY . /var/sync
 RUN cd /var/sync && npm install
 COPY config.template.yaml /var/sync/config.yaml
+RUN sed -i "s/database: 'cytube3'\n *user: 'root'\n *password: '$MYSQL_PASSWORD'"
 RUN sed -i "s/default-port: 8080/default-port: 80/" /var/sync/config.yaml
 RUN sed -i "s/domain: 'http://localhost'/domain: 'http://$VIRTUAL_HOST'/" /var/sync/config.yaml
 RUN sed -i "s/root-domain: 'localhost'/root-domain: '$VIRTUAL_HOST'/" /var/sync/config.yaml
