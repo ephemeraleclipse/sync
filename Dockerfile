@@ -8,7 +8,7 @@ RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
 COPY . /var/sync
 RUN cd /var/sync && npm install
 COPY config.template.yaml /var/sync/config.yaml
-RUN sed -i "s/database: 'cytube3'\n *user: 'root'\n *password: '$MYSQL_PASSWORD'"
+RUN sed -i "s/database: 'cytube3'\n *user: 'cytube3'\n *password: ''/database: 'cytube3'\n  user: 'root'\n  password: '$MYSQL_PASSWORD'/" /var/sync/config.yaml
 RUN sed -i "s/default-port: 8080/default-port: 80/" /var/sync/config.yaml
 RUN sed -i "s/domain: 'http://localhost'/domain: 'http://$VIRTUAL_HOST'/" /var/sync/config.yaml
 RUN sed -i "s/root-domain: 'localhost'/root-domain: '$VIRTUAL_HOST'/" /var/sync/config.yaml
