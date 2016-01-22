@@ -1,10 +1,10 @@
 FROM ubuntu
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install build-essential git python software-properties-common -y
+RUN apt-get install build-essential git python software-properties-common curl -y
 RUN add-apt-repository ppa:mc3man/trusty-media -y
 RUN apt-get update
 RUN apt-get install ffmpeg gstreamer0.10-ffmpeg -y
-RUN curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash -
+RUN curl --silent --location https://deb.nodesource.com/setup_4.x | bash -
 RUN apt-get install nodejs -y
 COPY . /var/sync
 RUN cd /var/sync && npm install
